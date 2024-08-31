@@ -1,0 +1,15 @@
+enum NavigationAction {
+  country,
+  about,
+  allNews,
+  allNewsSlider,
+  business,
+  entertainment,
+  health,
+  science,
+  sports,
+  technology,
+  lngEnglish,
+  lngHindi,
+  newsPagination,
+}
