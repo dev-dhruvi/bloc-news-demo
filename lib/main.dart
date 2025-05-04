@@ -1,3 +1,4 @@
+import 'package:bloc_news_app/core/constants/app_colors.dart';
 import 'package:bloc_news_app/core/extensions/app_context_extensions.dart';
 import 'package:bloc_news_app/core/extensions/app_localizations_delegate.dart';
 import 'package:bloc_news_app/routes/route_generator.dart';
