@@ -13,7 +13,8 @@ class CountryListCenterScreen extends StatefulWidget {
   CountryListCenterScreen({required this.selectedCountry, super.key});
 
   @override
-  State<CountryListCenterScreen> createState() => _CountryListCenterScreenState();
+  State<CountryListCenterScreen> createState() =>
+      _CountryListCenterScreenState();
 }
 
 class _CountryListCenterScreenState extends State<CountryListCenterScreen> {
@@ -21,7 +22,8 @@ class _CountryListCenterScreenState extends State<CountryListCenterScreen> {
   final double runSpacing = 2;
   final double spacing = 2;
   final columns = 3;
-  final TextEditingController _searchTextEditController = TextEditingController();
+  final TextEditingController _searchTextEditController =
+      TextEditingController();
   late List<Data> _countryData;
   late List<Data> _filterCountryData = [];
 
@@ -35,7 +37,7 @@ class _CountryListCenterScreenState extends State<CountryListCenterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.colorBG,
+      backgroundColor: AppColors().colorBG,
       appBar: AppWidgets.getAppBarWithSingleIcon(context, "Select Country", () {
         Navigator.pop(context, widget.selectedCountry);
       }, const Icon(Icons.done_outline_sharp)),
@@ -44,10 +46,12 @@ class _CountryListCenterScreenState extends State<CountryListCenterScreen> {
           if (state is CountryInitial) {
             return AppWidgets.getCenterLoadingView();
           } else if (state is CountryError) {
-            return AppWidgets.getBuildNoResult(context, "Error on countries data load");
+            return AppWidgets.getBuildNoResult(
+                context, "Error on countries data load");
           } else if (state is CountryDataLoaded) {
             if (state.data.data == null) {
-              return AppWidgets.getBuildNoResult(context, "Error on countries data load");
+              return AppWidgets.getBuildNoResult(
+                  context, "Error on countries data load");
             } else {
               _countryData = state.data.data ?? [];
               if (_filterCountryData.isEmpty) {
@@ -92,7 +96,8 @@ class _CountryListCenterScreenState extends State<CountryListCenterScreen> {
               );
             }
           } else {
-            return AppWidgets.getBuildNoResult(context, "Error on countries data load");
+            return AppWidgets.getBuildNoResult(
+                context, "Error on countries data load");
           }
         },
         listener: (context, state) {},
@@ -124,7 +129,9 @@ class _CountryListCenterScreenState extends State<CountryListCenterScreen> {
         });
       },
       child: Card(
-        color: countries.code == widget.selectedCountry ? AppColors.countrySelectionBorderColor : AppColors.colorBG,
+        color: countries.code == widget.selectedCountry
+            ? AppColors().countrySelectionBorderColor
+            : AppColors().colorBG,
         child: Row(
           children: [
             Container(
@@ -132,7 +139,9 @@ class _CountryListCenterScreenState extends State<CountryListCenterScreen> {
                 borderRadius: BorderRadius.circular(15),
                 border: Border.all(
                   width: 4.0,
-                  color: countries.code == widget.selectedCountry ? AppColors.countrySelectionBorderColor : AppColors.colorBG,
+                  color: countries.code == widget.selectedCountry
+                      ? AppColors().countrySelectionBorderColor
+                      : AppColors().colorBG,
                 ),
               ),
               child: ClipRRect(
@@ -147,7 +156,7 @@ class _CountryListCenterScreenState extends State<CountryListCenterScreen> {
             const SizedBox(width: 8),
             Text(
               countries.name,
-              style: AppColors.blackTextStyle,
+              style: const TextStyle(color: AppColors.blackTextStyle),
             )
           ],
         ),
@@ -160,7 +169,10 @@ class _CountryListCenterScreenState extends State<CountryListCenterScreen> {
     if (value.isEmpty) {
       result = _countryData;
     } else {
-      result = _countryData.where((element) => element.name.toLowerCase().contains(value.toLowerCase())).toList();
+      result = _countryData
+          .where((element) =>
+              element.name.toLowerCase().contains(value.toLowerCase()))
+          .toList();
     }
     setState(() {
       _filterCountryData = result!;

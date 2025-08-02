@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 import '../core/constants/app_colors.dart';
 
@@ -45,7 +44,7 @@ class AppText extends StatelessWidget {
       maxLines: multiLine! ? null : 1,
       textAlign: textAlign,
       overflow: multiLine! ? TextOverflow.visible : TextOverflow.ellipsis,
-      style: textStyle!.copyWith(
+      style: getTextStyle(context)!.copyWith(
         color: textColor,
         fontWeight: fontWeight,
         decoration: textDecoration ?? TextDecoration.none,
@@ -70,22 +69,23 @@ class AppText extends StatelessWidget {
     }
   }
 
-  TextStyle? get textStyle {
+  TextStyle? getTextStyle(BuildContext context) {
     switch (textSize) {
       case TextSize.extraSmall_10:
-        return Theme.of(Get.context!).textTheme.bodySmall!.copyWith(fontSize: 10.sp);
+        return Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 10.sp);
       case TextSize.small_12:
-        return Theme.of(Get.context!).textTheme.bodyMedium!.copyWith(fontSize: 12.sp);
+        return Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 12.sp);
       case TextSize.medium_14:
-        return Theme.of(Get.context!).textTheme.bodyMedium!.copyWith(fontSize: 14.sp);
+        return Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 14.sp);
       case TextSize.large_16:
-        return Theme.of(Get.context!).textTheme.bodyLarge!.copyWith(fontSize: 16.sp);
+        return Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 16.sp);
       case TextSize.title_18:
-        return Theme.of(Get.context!).textTheme.titleMedium!.copyWith(fontSize: 18.sp);
+        return Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: 18.sp);
       case TextSize.headline_24:
-        return Theme.of(Get.context!).textTheme.headlineSmall!.copyWith(fontSize: 24.sp);
+        return Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 24.sp);
       default:
-        return Theme.of(Get.context!).textTheme.bodyMedium!.copyWith(fontSize: 12.sp);
+        return Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 12.sp);
     }
   }
+
 }

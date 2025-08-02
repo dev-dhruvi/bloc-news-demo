@@ -4,7 +4,10 @@ class CountryListMain {
   CountryListMain({this.data});
 
   factory CountryListMain.fromJson(Map<String, dynamic> json) {
-    return CountryListMain(data: json['data'] == null ? [] : List<Data>.from(json['data']!.map((x) => Data.fromJson(x))));
+    return CountryListMain(
+        data: json['data'] == null
+            ? []
+            : List<Data>.from(json['data']!.map((x) => Data.fromJson(x))));
   }
 }
 
@@ -16,6 +19,9 @@ class Data {
   Data({required this.name, required this.flag, required this.code});
 
   factory Data.fromJson(Map<String, dynamic> json) {
-    return Data(name: json['name'] ?? "", flag: json['flag'] ?? "", code: json['code'] ?? "");
+    return Data(
+        name: json['name'] ?? "",
+        flag: json['flag'] ?? "",
+        code: json['code'] ?? "");
   }
 }

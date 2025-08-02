@@ -34,7 +34,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                 child: Text(
                   widget.articleData.source?.name ?? "NA",
                   style: context.resources.style.whiteTextStyle.copyWith(
-                    color: AppColors.colorAccent.shade800,
+                    color: AppColors().colorAccent.shade800,
                     fontSize: 14,
                   ),
                 ),

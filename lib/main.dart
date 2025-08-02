@@ -16,9 +16,11 @@ class MyApp extends StatefulWidget {
 
   @override
   State<MyApp> createState() => _MyAppState();
+
   static void setLocale(BuildContext context, Locale newLocale) {
     if (kDebugMode) {
-      print("NEWS APP SELECT LANG -->> ${newLocale.countryCode} / ${newLocale.languageCode}");
+      print(
+          "NEWS APP SELECT LANG -->> ${newLocale.countryCode} / ${newLocale.languageCode}");
     }
     var state = context.findAncestorStateOfType<_MyAppState>();
     state?.setLocale(newLocale);
@@ -27,6 +29,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late Locale _locale;
+
   void setLocale(Locale locale) {
     setState(() {
       _locale = locale;
@@ -46,7 +49,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: AppColors.colorPrimary,
+        primarySwatch: context.resources.color.colorPrimary,
       ),
       initialRoute: RoutesName.newsListScreen,
       onGenerateRoute: RouteGenerator().generateRoute,
@@ -56,10 +59,18 @@ class _MyAppState extends State<MyApp> {
         Locale("hi"),
         Locale("zh"),
       ],
-      localizationsDelegates: const [AppLocalizationsDelegate(), GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate, DefaultMaterialLocalizations.delegate, DefaultWidgetsLocalizations.delegate],
+      localizationsDelegates: const [
+        AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        DefaultMaterialLocalizations.delegate,
+        DefaultWidgetsLocalizations.delegate
+      ],
       localeResolutionCallback: (locale, supportedLocales) {
         for (var supportedLocal in supportedLocales) {
-          if (supportedLocal.languageCode == locale?.languageCode && supportedLocal.countryCode == locale?.countryCode) {
+          if (supportedLocal.languageCode == locale?.languageCode &&
+              supportedLocal.countryCode == locale?.countryCode) {
             return supportedLocal;
           }
         }

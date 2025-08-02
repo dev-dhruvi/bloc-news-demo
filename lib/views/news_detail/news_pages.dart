@@ -1,4 +1,5 @@
 import 'package:bloc_news_app/core/constants/app_assets.dart';
+import 'package:bloc_news_app/core/constants/app_colors.dart';
 import 'package:bloc_news_app/core/extensions/app_context_extensions.dart';
 import 'package:bloc_news_app/core/utils/utils.dart';
 import 'package:bloc_news_app/data/model/api/news_list_main.dart';
@@ -36,7 +37,7 @@ class NewsPages extends StatelessWidget {
             //Top image view with bottom start text
             Container(
               width: MediaQuery.of(context).size.width,
-              color: AppColors.colorAccent.shade800,
+              color: AppColors().colorAccent.shade800,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
@@ -85,7 +86,7 @@ class NewsPages extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: AppColors.colorAccent.shade800,
+                      color: AppColors().colorAccent.shade800,
                     ),
                     padding: EdgeInsets.all(8),
                     child: RichText(

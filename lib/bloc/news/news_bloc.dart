@@ -5,6 +5,7 @@ import 'package:bloc_news_app/data/model/api/news_list_main.dart';
 import 'package:bloc_news_app/data/repository/news/news_repo_imp.dart';
 
 part 'news_event.dart';
+
 part 'news_state.dart';
 
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
@@ -18,10 +19,14 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     on<NewsFetchDataPaginationEvent>(_fetchNewsListPagination);
   }
 
-  FutureOr<void> _fetchNewsList(NewsEvent event, Emitter<NewsState> emit) async {
+  FutureOr<void> _fetchNewsList(
+      NewsEvent event, Emitter<NewsState> emit) async {
     if (event is NewsFetchDataEvent) {
       emit(NewsPageLoading());
-      await _newsRepo.getNewsData(event.countryCode, event.newsType).onError((error, stackTrace) => emit(NewsPageError(error.toString()))).then((value) {
+      await _newsRepo
+          .getNewsData(event.countryCode, event.newsType)
+          .onError((error, stackTrace) => emit(NewsPageError(error.toString())))
+          .then((value) {
         NewsListMain newsListMain = NewsListMain.fromJson(value);
         if (newsListMain.status == "ok") {
           emit(NewsPageLoaded(newsListMain));
@@ -32,12 +37,16 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     }
   }
 
-  FutureOr<void> _fetchNewsListPagination(NewsEvent event, Emitter<NewsState> emit) async {
+  FutureOr<void> _fetchNewsListPagination(
+      NewsEvent event, Emitter<NewsState> emit) async {
     if (event is NewsFetchDataPaginationEvent) {
       if (page == 1) {
         emit(NewsPageLoadingMore());
       }
-      await _newsRepo.getNewsPaginationData(event.countryCode, event.newsType, page).onError((error, stackTrace) => emit(NewsPageError(error.toString()))).then((value) {
+      await _newsRepo
+          .getNewsPaginationData(event.countryCode, event.newsType, page)
+          .onError((error, stackTrace) => emit(NewsPageError(error.toString())))
+          .then((value) {
         NewsListMain newsListMain = NewsListMain.fromJson(value);
         if (newsListMain.status == "ok") {
           emit(NewsMorePageLoaded(newsListMain));

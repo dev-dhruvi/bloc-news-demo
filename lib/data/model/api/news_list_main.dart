@@ -16,7 +16,10 @@ class NewsListMain {
       status: json["status"] ?? "",
       message: json["message"] ?? "",
       totalResults: json["totalResults"] ?? 0,
-      articles: json["articles"] == null ? [] : List<Article>.from(json["articles"]!.map((x) => Article.fromJson(x))),
+      articles: json["articles"] == null
+          ? []
+          : List<Article>.from(
+              json["articles"]!.map((x) => Article.fromJson(x))),
     );
   }
 }
@@ -50,7 +53,9 @@ class Article {
       description: json["description"] ?? "",
       url: json["url"] ?? "",
       urlToImage: json["urlToImage"] ?? "",
-      publishedAt: json["publishedAt"] == null ? null : DateTime.parse(json["publishedAt"]),
+      publishedAt: json["publishedAt"] == null
+          ? null
+          : DateTime.parse(json["publishedAt"]),
       content: json["content"] ?? "",
     );
   }
